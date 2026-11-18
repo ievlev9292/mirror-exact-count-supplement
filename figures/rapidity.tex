@@ -1,0 +1,29 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.18}
+\definecolor{blue}{HTML}{0072B2}
+\definecolor{orange}{HTML}{D55E00}
+\definecolor{green}{HTML}{009E73}
+\definecolor{purple}{HTML}{CC79A7}
+\pgfplotsset{every axis/.append style={font=\small,axis lines=left,tick align=outside,grid=major,grid style={gray!15},legend style={draw=none,fill=none,font=\footnotesize},line width=.5pt}}
+\begin{document}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.5cm},width=7.7cm,height=5.7cm,xmin=-3.5,xmax=3.5,ymin=-2.25,ymax=2.25,xlabel={Laboratory time $t/\tau$},ylabel={Signed rapidity $\eta(t)$},legend pos=north west]
+\nextgroupplot[title={(a) One peak, different orders},legend style={at={(.5,-.28)},anchor=north,draw=none,fill=none}]
+\addplot[gray!65,thin,forget plot] coordinates {(-3.5,0)(3.5,0)};
+\addplot[blue,thick] table[x=t,y=eta]{data/flight1.dat};\addlegendentry{$m=1$}
+\addplot[orange,thick,dashed] table[x=t,y=eta]{data/flight2.dat};\addlegendentry{$m=2$}
+\addplot[green,thick,dashdotted] table[x=t,y=eta]{data/flight3.dat};\addlegendentry{$m=3$}
+\nextgroupplot[title={(b) Returning motions},ylabel={},legend style={at={(.5,-.28)},anchor=north,draw=none,fill=none}]
+\addplot[gray!65,thin,forget plot] coordinates {(-3.5,0)(3.5,0)};
+\addplot[green,thick] table[x=t,y=eta]{data/return0.dat};\addlegendentry{Symmetric bounce}
+\addplot[purple,thick,dashed] table[x=t,y=eta]{data/return1.dat};\addlegendentry{Asymmetric return}
+\addplot[orange,thick,dotted] table[x=t,y=eta]{data/elliptic.dat};\addlegendentry{Elliptic round trip}
+\end{groupplot}
+\end{tikzpicture}
+\end{document}
+

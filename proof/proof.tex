@@ -1,0 +1,504 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=26mm]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\R}{\mathbb R}
+\newcommand{\atanh}{\operatorname{artanh}}
+\newtheorem{theorem}{Theorem}
+\setlength{\emergencystretch}{2em}
+\title{Proof of the local particle-number and energy laws}
+\author{Companion to \emph{Particle number and energy from the shape of relativistic mirror motion}}
+\date{18 November 2026}
+\begin{document}
+\maketitle
+\section{Notation and starting identities}
+Laboratory time is $t$, the mirror position is $z(t)$, and its velocity
+is $v(t)=\dot z(t)$. We use $c=\hbar=1$ and count radiation in both
+exterior regions for one real massless scalar field. For $t\ne t'$,
+define the chord velocity and a velocity-difference functional by
+\begin{equation}
+ \bar v(t,t')=\frac{z(t)-z(t')}{t-t'},\qquad
+ G[v]=\iint_{\R^2}\left[\frac{v(t)-v(t')}{t-t'}\right]^2\dd t\dd t'.
+ \label{eq:G}
+\end{equation}
+The diagonal values are defined by continuity. The parameter
+$\mu=(\omega-\omega')/(\omega+\omega')\in(-1,1)$ is the frequency
+asymmetry, with $\omega,\omega'>0$ the outgoing and incoming frequencies.
+The number and energy identities established in Appendix~A of the
+accompanying manuscript~\cite{MirrorCountsManuscript} are our starting
+point:
+\begin{equation}
+ N=\frac1{8\pi^2}\int_{-1}^1(1-\mu^2)\dd\mu
+ \iint_{\R^2}
+ \frac{\left[\dfrac{v(t)-v(t')}{t-t'}\right]^2\dd t\dd t'}
+ {[1-\mu v(t)][1-\mu v(t')][1-\mu\bar v(t,t')]^2},
+ \label{eq:pn-positive-number_appendix}
+\end{equation}
+\begin{equation}
+ E=\frac1{6\pi}\int_\R\frac{\dot v(t)^2}{[1-v(t)^2]^3}\dd t.
+ \label{eq:energy-positive-functional}
+\end{equation}
+Here $N$ is the total particle number in the incoming vacuum and $E$
+is the corresponding total energy. The boundary conditions in the
+theorem identify the second formula with the ordinary integrated
+stress flux. Both displayed integrands are nonnegative.
+
+\section{Main theorem}
+
+\begin{theorem}[Separated fast events]
+\label{thm:local}
+Let $v_\lambda\in C^1(\R)$ be a family of velocities with
+$|v_\lambda|<1$, $v_\lambda(t)\to0$ as $t\to\pm\infty$, and
+$G[v_\lambda]\le M_G$ uniformly, where $G$ is defined in
+Eq.~\eqref{eq:G} with laboratory time as its argument.
+Suppose there are a fixed number $J$ of event centers
+$t_j(\lambda)$ in a fixed compact set and a fixed $\rho>0$ such that
+the intervals $I_j=(t_j-\rho,t_j+\rho)$ are disjoint. Outside their
+union, require $|v_\lambda|\le1-c$ with fixed $c>0$.
+
+On each full interval, suppose
+\begin{equation}
+ \sigma_j v_\lambda(t_j+\Delta t)
+ =V_j-a_j(\Delta t)^{2m_j}-R_j(\Delta t),
+ \label{eq:profile}
+\end{equation}
+where $|\Delta t|<\rho$, $\sigma_j\in\{-1,1\}$,
+$V_j\to1$, $m_j\ge1$ is a fixed integer, and
+$0<a_-\le a_j\le a_+<\infty$. For a fixed $\alpha>0$, assume
+\begin{equation}
+ \begin{aligned}
+ |R_j(\Delta t)|&\le M|\Delta t|^{2m_j+\alpha},\\
+ |R_j'(\Delta t)|&\le M|\Delta t|^{2m_j+\alpha-1},
+ \end{aligned}
+ \label{eq:remainders}
+\end{equation}
+and, throughout $I_j$,
+\begin{equation}
+ \begin{aligned}
+ \sigma_j v_\lambda(t_j+\Delta t)&\ge\tfrac12,\\
+ 1-\sigma_j v_\lambda(t_j+\Delta t)
+     &\ge1-V_j+\tfrac12a_j|\Delta t|^{2m_j}.
+ \end{aligned}
+ \label{eq:coercive}
+\end{equation}
+All constants are independent of $\lambda$ and $j$. Define the peak
+Lorentz factors and nonnegative peak rapidities by
+\begin{equation}
+ \gamma_j=(1-V_j^2)^{-1/2}=\cosh\eta_j,
+ \qquad \eta_j=\atanh V_j.
+ \label{eq:local-heights}
+\end{equation}
+Then the particle number in Eq.~\eqref{eq:pn-positive-number_appendix}
+satisfies
+\begin{align}
+ N&=\sum_{j=1}^J C_{m_j}\log\gamma_j
+       +o\!\left(\sum_{j=1}^J\log\gamma_j\right)\nonumber\\
+  &=\sum_{j=1}^J C_{m_j}\eta_j
+       +o\!\left(\sum_{j=1}^J\eta_j\right).
+ \label{eq:localN}
+\end{align}
+The coefficient is
+\begin{equation}
+ C_m=\frac1{\pi m}\sum_{p=1}^m\cot\frac{\pi p}{2m+1}.
+ \label{eq:Cm}
+\end{equation}
+The limits $V_j\to1$ may occur at unequal rates.
+
+For energy, assume in addition $v_\lambda\in C^2(\R)$,
+the boundary limits
+\begin{equation}
+ \lim_{t\to\pm\infty}
+ \frac{\dot v_\lambda(t)}{[1\mp v_\lambda(t)]^2[1\pm v_\lambda(t)]}=0
+ \quad\text{for both sign choices},
+ \label{eq:stress-boundaries}
+\end{equation}
+and the uniform bound
+\begin{equation}
+ \int_{\R\setminus\bigcup_j I_j}
+       \frac{\dot v_\lambda^{\,2}}{(1-v_\lambda^2)^3}\dd t\le M_E.
+ \label{eq:outer-energy-bound}
+\end{equation}
+Then
+\begin{equation}
+ \begin{aligned}
+ E&\sim\sum_{j=1}^J D_{m_j}a_j^{1/(2m_j)}
+                              \gamma_j^{2+1/m_j}\\
+  &=\sum_{j=1}^J D_{m_j}a_j^{1/(2m_j)}
+                              \cosh^{2+1/m_j}\eta_j,
+ \end{aligned}
+ \label{eq:localE}
+\end{equation}
+where
+\begin{equation}
+ D_m=\frac{2^{1/(2m)}[1-1/(2m)]}{24\sin[\pi/(2m)]}.
+ \label{eq:local-energy-coefficient}
+\end{equation}
+\end{theorem}
+
+Here $\Delta t=t-t_j$ is a displacement in laboratory time, and
+$R_j$ is the remainder after subtracting the peak value and leading
+even power. The lower bound~\eqref{eq:coercive} excludes an additional
+fast maximum in the same interval. These are uniform assumptions on
+a family, rather than a Taylor expansion of one fixed trajectory.
+
+\section{Proof for one positive-velocity event}
+\subsection{Characteristic time scale and logarithmic number growth}
+\label{app:local-scaling}
+
+Take a single event with $\sigma=+1$, translate its center to zero,
+and suppress the family index. In physical laboratory time its
+profile is
+\begin{equation}
+ v(t)=V-a t^{2m}-R(t),\qquad |t|<\rho,\qquad V\to1.
+ \label{eq:single-event-profile}
+\end{equation}
+Only the endpoint $\mu=1$ can be enhanced by this event.
+Write its distance as $\delta\mu=1-\mu$ and choose a fixed small
+$\delta\mu_0>0$. For $0<\delta\mu<\delta\mu_0$, set
+\begin{equation}
+ \mu=1-\delta\mu,\qquad
+ \ell=\left(\frac{1-\mu V}{a}\right)^{1/(2m)}.
+ \label{eq:local-scale}
+\end{equation}
+The exact denominator at the peak is
+$1-\mu V=1-V+V\delta\mu$.
+The coefficient $a$ has units of time to the power $-2m$, so
+$\ell$ has units of laboratory time. For $\mu$ near one, it is the
+characteristic width of the region where the local speed variation
+$a|t|^{2m}$ competes with the phase-rate gap $1-\mu V$.
+As $V\to1$ and $\mu\to1$, the uniform lower bound on $a$ makes this
+width shrink to zero.
+
+
+In the time integral over $(-\rho,\rho)^2$, substitute
+$t\mapsto\ell t$ and $t'\mapsto\ell t'$.
+For readability the dimensionless dummy variables after this
+substitution are again denoted by $t,t'$. For example,
+\begin{equation}
+ \frac{1-\mu v(\ell t)}{1-\mu V}
+ =1+\mu t^{2m}+\frac{\mu R(\ell t)}{1-\mu V}
+ \longrightarrow1+t^{2m}.
+ \label{eq:scaled-denominator}
+\end{equation}
+The remainder divided by $1-\mu V=a\ell^{2m}$ is
+$O(\ell^\alpha|t|^{2m+\alpha})$. The derivative bound controls
+divided differences in the same way, including $t=t'$.
+The chord velocity is the average of $v$ over the connecting time
+interval. Its denominator, divided by $1-\mu V$, tends to
+$1+Q_{2m}(t,t')$, where
+\begin{align}
+ Q_{2m}(t,t')
+ &=\int_0^1[(1-\theta)t+\theta t']^{2m}\dd\theta\nonumber\\
+ &=\frac{t^{2m+1}-(t')^{2m+1}}{(2m+1)(t-t')}.
+ \label{eq:local-Q}
+\end{align}
+The second form is continued at $t=t'$.
+
+The velocity difference contributes a factor $(1-\mu V)^2$,
+while the four denominator powers contribute $(1-\mu V)^4$.
+The two time measures cancel the two powers of $\ell$ in the
+squared time difference. Consequently the original double-time
+integral over this event square is
+\begin{equation}
+ \frac{K_{2m}+o(1)}{(1-\mu V)^2},
+ \label{eq:inner-limit}
+\end{equation}
+with the positive, dimensionless coefficient
+\begin{equation}
+ \begin{aligned}
+ K_{2m}={}&\iint_{\R^2}
+ \left[\frac{t^{2m}-(t')^{2m}}{t-t'}\right]^2\\
+ &\times\frac{\dd t\dd t'}
+ {(1+t^{2m})[1+(t')^{2m}][1+Q_{2m}(t,t')]^2}.
+ \end{aligned}
+ \label{eq:K}
+\end{equation}
+In particular, the coefficient $a$, which sets the physical time
+scale, cancels from the particle count.
+
+We justify the limit before doing the $\mu$ integral.
+The nonnegative homogeneous polynomial $Q_{2m}$ vanishes only when
+$t=t'=0$: otherwise the line segment in its defining integral
+cannot have zero even power throughout. Compactness on
+$|t|^{2m}+|t'|^{2m}=1$ therefore gives
+$Q_{2m}\asymp |t|^{2m}+|t'|^{2m}$.
+For $\mu$ sufficiently close to one, the coercive bound in the
+theorem controls the scaled point and chord denominators by these
+same positive polynomials. The derivative remainder bounds the
+divided difference by $C(|t|+|t'|)^{2m-1}$.
+Thus a constant times
+\begin{equation}
+ \frac{(|t|+|t'|)^{4m-2}}
+ {(1+|t|^{2m})(1+|t'|^{2m})
+                  (1+|t|^{2m}+|t'|^{2m})^2}
+ \label{eq:majorant}
+\end{equation}
+majorizes the scaled integrand, extended by zero outside its
+expanding event square. This function is bounded near the origin.
+On $|t|\ge\max(1,|t'|)$ it is at most
+$C|t|^{-2m-2}/(1+|t'|^{2m})$, an integrable bound; exchange the
+variables for the other region. Dominated convergence proves
+Eq.~\eqref{eq:inner-limit} jointly as $V\to1$ and $\mu\to1$,
+with no restriction on their relative rates.
+
+The weight is $1-\mu^2=2\delta\mu-(\delta\mu)^2$.
+The leading event contribution to $N$ is therefore
+\begin{equation}
+ \frac{K_{2m}}{4\pi^2}
+ \int_0^{\delta\mu_0}
+       \frac{\delta\mu\,\dd(\delta\mu)}{(1-V+V\delta\mu)^2}.
+ \label{eq:log-integral}
+\end{equation}
+This last integral is elementary:
+\begin{align}
+ &\int_0^{\delta\mu_0}
+       \frac{\delta\mu\,\dd(\delta\mu)}{(1-V+V\delta\mu)^2}
+       \nonumber\\
+ &\quad=\frac1{V^2}\left[
+       \log\frac{1-V+V\delta\mu_0}{1-V}
+       +\frac{1-V}{1-V+V\delta\mu_0}-1\right]\nonumber\\
+ &\quad=\log\frac1{1-V}+O(1).
+ \label{eq:log}
+\end{align}
+The omitted $(\delta\mu)^2$ weight gives a bounded contribution.
+To control the $o(1)$ in Eq.~\eqref{eq:inner-limit}, fix a small
+threshold for $1-\mu V$. Below it, uniform convergence bounds the
+error by an arbitrarily small multiple of the integral in
+Eq.~\eqref{eq:log}; above it, the denominators have a fixed gap and
+$G[v]$ bounds the contribution. Sending $V\to1$ first and then the
+threshold to zero gives $o(\log[1/(1-V)])$.
+The $\mu$ range away from $\mu=1$ is bounded for the same reason.
+
+To complete the single-event localization, we must also control time
+pairs outside $(-\rho,\rho)^2$. Here and below $t,t'$ again denote
+physical laboratory times. Outside $(-\rho/2,\rho/2)$, the
+coercive bound and the outer speed gap give $1-|v|\ge c_1>0$.
+For a pair outside the full event square, its connecting interval
+also has a uniform average gap. If its length is at least $4\rho$,
+at least half lies outside the full event interval. If its length
+is shorter and it enters the smaller core, it must traverse an
+annulus of width $\rho/2$ before reaching the endpoint outside the
+full interval. If it misses the core, the gap $c_1$ applies
+throughout. In all cases $1-|\bar v(t,t')|\ge c_0>0$.
+
+When both endpoints avoid the core, all denominator factors are
+uniformly bounded below, and $G[v]\le M_G$ bounds their contribution.
+When one endpoint is in the core, its partner is at least
+$\rho/2$ away. The elementary inequality
+\begin{equation}
+ \frac{(1-\mu^2)(v-w)^2}{(1-\mu v)(1-\mu w)}\le4,
+ \qquad |v|,|w|<1,
+ \label{eq:cross}
+\end{equation}
+then bounds the full kernel by $C/(t-t')^2$.
+To verify the inequality, take $v\ge w$; the ratio increases with
+$v$ and decreases with $w$, as the derivative numerators contain
+$2-\mu(v+w)>0$. Its supremum is its value $4$ at $v=1,w=-1$.
+The partner-time integral over $|t-t'|\ge\rho/2$ is finite and the
+core has bounded length. All these remaining pairs contribute
+$O(1)$, so they cannot change the leading logarithm.
+
+\subsection{The coefficient of the single-event number law}
+Equations~\eqref{eq:log-integral} and \eqref{eq:log} already show that
+the coefficient of $\log\gamma$ is $K_{2m}/(2\pi^2)$, independently
+of the time scale $a$. To evaluate it, take the exact flight
+\begin{equation}
+ t(z)=-\frac zV-\frac{z^{2m+1}}{(2m+1)V^{2m+1}\tau^{2m}},
+ \qquad 0<V<1,\quad \tau>0.
+ \label{eq:family}
+\end{equation}
+It has one negative-velocity fast event. Reflection $z\mapsto-z$,
+$\mu\mapsto-\mu$ leaves the number kernel invariant, so the
+positive-event argument just proved applies. With
+$\xi=-z/(V\tau)$, one has
+$t=\tau[\xi+\xi^{2m+1}/(2m+1)]$ and
+$v=-V/(1+\xi^{2m})$. Inversion near zero gives
+\begin{equation}
+ -v(t)=V-\frac V{\tau^{2m}}t^{2m}+O(t^{4m}),
+ \qquad a=\frac V{\tau^{2m}}.
+ \label{eq:flight-local-profile}
+\end{equation}
+The differentiated remainder has order $O(|t|^{4m-1})$ uniformly
+for $V$ near one. A sufficiently small fixed event interval supplies
+the coercive bound; outside it the fixed shape has a speed gap.
+The velocity is $V$ times a fixed smooth function of $t/\tau$ with
+tail $O(|t|^{-2m/(2m+1)})$, whose derivative has one more inverse
+power. The fixed shape and its derivative are square integrable.
+Parseval and Cauchy--Schwarz therefore give finite $G$; multiplying
+by $V$ preserves its uniform bound. Thus all number hypotheses
+hold for this comparison family.
+
+The exact finite-speed count established in Sec.~III and Appendix~B
+of the accompanying manuscript~\cite{MirrorCountsManuscript} gives
+\begin{equation}
+ N_m=C_mF(\eta_*),\qquad
+ F(\eta_*)=\frac{\eta_*}{\tanh\eta_*}-1
+          =\frac{\atanh V}{V}-1,\qquad \eta_*=\atanh V.
+ \label{eq:F}
+\end{equation}
+Since $F(\eta_*)=\log\gamma+O(1)$, comparison with the already
+proved local logarithm fixes $K_{2m}/(2\pi^2)=C_m$.
+The manuscript obtains that finite-speed count from its generalized-Airy
+calculation, independently of the local asymptotic law. Finally,
+\begin{equation}
+ \log\frac1{1-V}=2\log\gamma+\log(1+V),\qquad
+ \log\gamma=\eta-\log2+o(1),\quad \eta=\atanh V,
+ \label{eq:local-log-gamma}
+\end{equation}
+establishes Eq.~\eqref{eq:localN} for one event in both forms.
+
+\subsection{Leading energy and its characteristic time scale}
+
+The same local profile gives a power law for energy. We now use
+physical laboratory time in Eq.~\eqref{eq:single-event-profile},
+and the energy functional~\eqref{eq:energy-positive-functional}.
+This time choose
+$\ell=[(1-V)/a]^{1/(2m)}$ and substitute $t\mapsto\ell t$.
+This is the characteristic laboratory-time width over which the
+speed falls below its peak by an amount comparable to $1-V$.
+It is the $\mu=1$ member of the scales in Eq.~\eqref{eq:local-scale}.
+Again denote the dimensionless integration variable by $t$.
+On compact sets the profile and its differentiated remainder give
+\begin{align}
+ 1-v(\ell t)^2
+    &=2(1-V)(1+t^{2m})[1+o(1)],\nonumber\\
+ \dot v(\ell t)
+    &=-2m a\ell^{2m-1}t^{2m-1}
+                          +o(a\ell^{2m-1}).
+ \label{eq:energy-scaled-profile}
+\end{align}
+The first relation is uniform on compact sets; the derivative
+remainder vanishes there by Eq.~\eqref{eq:remainders}.
+On the full expanding event interval, the coercive and derivative
+bounds majorize the scaled energy integrand by
+$C|t|^{4m-2}/(1+|t|^{2m})^3$.
+This is integrable at zero and decays as $|t|^{-2m-2}$ at infinity.
+Dominated convergence therefore gives the event contribution
+\begin{align}
+ E_{\mathrm{event}}\sim{}&\frac{(2m)^2}{48\pi}
+        a^{1/(2m)}(1-V)^{-1-1/(2m)}\nonumber\\
+ &\times\int_\R\frac{t^{4m-2}}{(1+t^{2m})^3}\dd t.
+ \label{eq:betaenergy}
+\end{align}
+Here $E_{\mathrm{event}}$ denotes the energy integral restricted to
+the single event interval.
+
+Set $h=t^{2m}$ on the positive half-line. The beta integral
+\cite[Eqs.~5.12.1 and 5.12.3]{DLMF}, followed by the gamma recurrence and reflection
+identities~\cite[Eqs.~5.5.1 and 5.5.3]{DLMF}, gives
+\begin{align}
+ \int_\R\frac{t^{4m-2}}{(1+t^{2m})^3}\dd t
+ &=\frac1m B\left(2-\frac1{2m},1+\frac1{2m}\right)\nonumber\\
+ &=\frac{\Gamma(2-1/(2m))\Gamma(1+1/(2m))}{2m}
+       \nonumber\\
+ &=\frac{\pi[1-1/(2m)]}{4m^2\sin[\pi/(2m)]}.
+ \label{eq:local-energy-beta}
+\end{align}
+In the last step,
+$\Gamma(2-1/(2m))=[1-1/(2m)]\Gamma(1-1/(2m))$,
+$\Gamma(1+1/(2m))=\Gamma(1/(2m))/(2m)$, and
+$\Gamma(u)\Gamma(1-u)=\pi/\sin(\pi u)$.
+Substitution into Eq.~\eqref{eq:betaenergy} yields
+\begin{align}
+ E_{\mathrm{event}}&\sim\frac{1-1/(2m)}{48\sin[\pi/(2m)]}
+          a^{1/(2m)}(1-V)^{-1-1/(2m)}\nonumber\\
+    &\sim D_m a^{1/(2m)}\gamma^{2+1/m}
+     =D_m a^{1/(2m)}\cosh^{2+1/m}\eta.
+ \label{eq:one-event-energy}
+\end{align}
+We used $\gamma^{-2}=(1-V)(1+V)$ and $V\to1$.
+The uniformly bounded outer energy in
+Eq.~\eqref{eq:outer-energy-bound} is subleading.
+
+For the exact-flight normalization in Eq.~\eqref{eq:flight-local-profile},
+$a=V/\tau^{2m}$, so the corresponding leading energy is
+\begin{equation}
+ E\sim\frac{1-1/(2m)}{48\tau\sin[\pi/(2m)]}
+                 (1-V)^{-1-1/(2m)}.
+ \label{eq:main-energy-coefficient}
+\end{equation}
+The additional factor $V^{1/(2m)}$ tends to one.
+The time scale cancels from the number coefficient but remains in
+the energy coefficient. This is why the number grows logarithmically
+with the peak Lorentz factor, whereas energy also resolves the
+width and order of the peak.
+
+\section{Negative velocities and several separated events}
+
+For a single event with $\sigma=-1$, reflect the worldline:
+$z\mapsto-z$, $v\mapsto-v$, and change $\mu\mapsto-\mu$.
+The number kernel, its $\mu$ measure, and the energy functional
+are invariant. The enhanced endpoint is now $\mu=-1$, with
+$\delta\mu=1+\mu$. The preceding proof applies unchanged to the
+reflected positive event. Both coefficients therefore depend on
+the local peak order and magnitude, not on its sign.
+
+For several events, the analysis on each same-event square
+$I_j\times I_j$ is exactly the single-event analysis, with
+$\Delta t=t-t_j$ before rescaling. It remains to bound pairs that
+do not belong to any such square, including pairs from different
+fast events. We give this step explicitly because additivity is
+not an assumption about loss of phase coherence.
+
+Let $I_j^0=(t_j-\rho/2,t_j+\rho/2)$.
+Outside these smaller cores, Eq.~\eqref{eq:coercive} and the outer
+speed gap give a uniform $1-|v|\ge c_1>0$.
+Consider a connecting interval for a pair outside all the
+same-event squares. If its length is at least $4J\rho$, at least
+half of it lies outside the union of the full event intervals,
+whose total length is $2J\rho$; its average gap is at least $c/2$.
+For a shorter interval that misses every core, use $c_1$.
+If it meets a core, its endpoints cannot both lie in that core's
+full interval, because the pair is outside every same-event
+square. It therefore crosses an annulus of width at least
+$\rho/2$. Dividing its positive gap integral on this annulus by
+the upper length bound $4J\rho$ gives another fixed positive
+average gap. Thus
+\begin{equation}
+ 1-|\bar v(t,t')|\ge c_0>0
+ \label{eq:outer-chord-gap}
+\end{equation}
+uniformly for all these pairs.
+
+If both endpoints avoid the smaller cores, the point denominators
+are also bounded below, so their total contribution is at most
+$C G[v_\lambda]$. Otherwise one endpoint belongs to a bounded
+core and its partner is at least $\rho/2$ away. Apply
+Eq.~\eqref{eq:cross} and the chord gap to obtain the bound
+$C/(t-t')^2$. Integrating over the separated partner and then over
+the finite union of cores gives $O(1)$, uniformly in the family.
+This establishes boundedness of all outer and cross-event number
+contributions without estimating an oscillatory interference term.
+
+The same-event squares give
+$\sum_j[C_{m_j}\log\gamma_j+o(\log\gamma_j)]$.
+For a fixed finite number of events, the maximum of the finitely
+many relative errors tends to zero. Their sum is therefore
+$o(\sum_j\log\gamma_j)$, even when the $V_j$ approach unity at
+different rates. Equation~\eqref{eq:local-log-gamma} supplies the
+rapidity statement. For energy the exact functional is already a
+single integral, so the event intervals add directly.
+Its complement is bounded by Eq.~\eqref{eq:outer-energy-bound},
+and the same finite-sum error argument proves
+Eq.~\eqref{eq:localE}. This completes the theorem.
+
+\section{Scope of the result}
+
+The proof gives the stated little-$o$ number remainder; a bounded
+remainder is not established for the entire class. Peaks that
+remain uniformly subluminal can be included in the bounded outer
+part. Every additional peak that tends to light speed must be
+retained, even if its Lorentz factor grows more slowly than the
+largest one. Merging centers, a growing number or order of peaks,
+or coefficients $a_j$ tending to zero or infinity require a
+different uniform analysis. A near-light-speed interval of fixed
+duration violates the coercive local profile. Motion outside the
+listed events can contribute at leading order if either global
+bound fails. These are the reasons that smoothness and asymptotic
+rest alone do not imply the local laws.
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+\end{document}

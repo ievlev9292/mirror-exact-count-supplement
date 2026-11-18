@@ -1,0 +1,26 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.18}
+\definecolor{blue}{HTML}{0072B2}
+\definecolor{orange}{HTML}{D55E00}
+\definecolor{green}{HTML}{009E73}
+\definecolor{purple}{HTML}{CC79A7}
+\pgfplotsset{every axis/.append style={font=\small,axis lines=left,tick align=outside,grid=major,grid style={gray!15},legend style={draw=none,fill=none,font=\footnotesize},line width=.5pt}}
+\begin{document}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.8cm},width=7.5cm,height=5.7cm]
+\nextgroupplot[title={(a) Independent of peak speed},xlabel={Order $m$ (peak order $2m$)},ylabel={Count ratio $N_m/N_1=C_m/C_1$},xmin=.8,xmax=7.2,xtick={1,2,3,4,5,6,7}]
+\addplot[gray!65,dotted,forget plot] coordinates {(1,1)(7,1)};
+\addplot[blue,thick,mark=*,mark size=1.8pt] table[x=m,y=ratio]{data/coefficients.dat};
+\nextgroupplot[title={(b) Same peak speed and time scale},xmode=log,ymode=log,xlabel={Peak Lorentz factor $\gamma$},ylabel={Energy ratio $E_m/E_1$},xmin=1,xmax=10000,ymin=.003,ymax=4,legend pos=south west]
+\addplot[gray!65,dotted,forget plot] coordinates {(1.02,1)(10000,1)};
+\addplot[orange,thick] table[x=gamma,y=m2]{data/energies.dat};\addlegendentry{$m=2$}
+\addplot[green,thick,dashed] table[x=gamma,y=m3]{data/energies.dat};\addlegendentry{$m=3$}
+\addplot[purple,thick,dashdotted] table[x=gamma,y=m4]{data/energies.dat};\addlegendentry{$m=4$}
+\end{groupplot}
+\end{tikzpicture}
+\end{document}
